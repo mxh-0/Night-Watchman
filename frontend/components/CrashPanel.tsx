@@ -21,17 +21,21 @@ export function CrashPanel({ currentPriceUsd }: { currentPriceUsd: number }) {
   const isOwner =
     PRICE_FEED_DEPLOYED && !!owner && !!address && owner.toLowerCase() === address.toLowerCase();
 
-  const crashedPrice = Math.max(1, Math.round(currentPriceUsd * 0.42));
+  // Lands the health factor just under the user's 1.10 policy floor while
+  // staying above 1.00 — the position must be defensible, not already
+  // liquidatable. A deeper crash makes the defense unable to restore it.
+  const crashedPrice = Math.max(1, Math.round(currentPriceUsd * 0.867));
 
   function trigger() {
     if (!MOCK_PRICE_FEED_ADDRESS) return;
     reset();
-    // MockPriceFeed prices are stored 8-decimal (Chainlink-style) fixed point.
+    // MockPriceFeed stores 18-decimal fixed point, matching the deploy script
+    // and the seed/reset scripts. Writing 8 here set the price to ~0.
     writeContract({
       address: MOCK_PRICE_FEED_ADDRESS,
       abi: mockPriceFeedAbi,
       functionName: "setPrice",
-      args: [parseUnits(String(crashedPrice), 8)],
+      args: [parseUnits(String(crashedPrice), 18)],
     });
   }
 
