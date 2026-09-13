@@ -96,7 +96,7 @@ export const MOCK_ACTIVITY: ActivityEvent[] = [
     id: "evt-4",
     timestamp: now - 92_000,
     type: "price_crash",
-    message: "MockPriceFeed.setPrice called from Demo Vault admin panel — ETH/USD moved 2,450 -> 1,380.",
+    message: "MockPriceFeed.setPrice called from the owner control panel — ETH/USD moved 2,450 -> 1,380.",
     protocol: "arc-demo-vault",
   },
   {

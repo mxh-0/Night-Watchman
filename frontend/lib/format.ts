@@ -29,7 +29,7 @@ export function protocolLabel(protocol: string): string {
     case "spark":
       return "Spark";
     case "arc-demo-vault":
-      return "Arc Demo Vault";
+      return "Arc Vault";
     default:
       return protocol;
   }

@@ -26,7 +26,7 @@ export function VaultView() {
       <div className="flex flex-col gap-2">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h1 className="font-sans text-3xl font-semibold uppercase tracking-wide text-ink">
-            Demo Vault
+            Vault
           </h1>
           <DataSourceBadge live={live} sourceLabel="agent/src/api" />
         </div>
@@ -47,7 +47,7 @@ export function VaultView() {
               strokeWidth="1.8"
             />
           </svg>
-          Not Yet Deployed — Showing Demo State
+          Contracts Not Configured — Showing Placeholder State
         </div>
       )}
 

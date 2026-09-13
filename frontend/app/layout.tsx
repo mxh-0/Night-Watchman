@@ -55,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <footer className="border-t border-border px-4 py-4 text-xs text-ink-faint sm:px-6 lg:px-10">
               <p className="font-serif">
                 Lamplighter — ETHOnline 2026. Watchtower data is read-only and sourced from
-                public Messari-standardized subgraphs. The Demo Vault is a self-controlled fixture
+                public Messari-standardized subgraphs. The Vault is a self-controlled fixture
                 on Arc testnet, not a real user position.
               </p>
             </footer>

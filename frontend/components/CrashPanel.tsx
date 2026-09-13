@@ -41,15 +41,15 @@ export function CrashPanel({ currentPriceUsd }: { currentPriceUsd: number }) {
 
   return (
     <div className="rounded-md border border-bad/40 bg-bad-soft/15 p-4">
-      <p className="tracked-label text-[10px] font-bold text-bad">Judge-Facing Demo Control</p>
+      <p className="tracked-label text-[10px] font-bold text-bad">Owner-Gated Market Control</p>
       <h3 className="mt-1 font-sans text-xl font-semibold uppercase tracking-wide text-ink">
         Trigger Market Crash
       </h3>
       <p className="mt-1.5 font-serif text-xs text-ink-soft">
         Calls <code className="font-mono">MockPriceFeed.setPrice</code>, forcing the collateral
         price from {`$${currentPriceUsd.toLocaleString("en-US")}`} down to {`$${crashedPrice.toLocaleString("en-US")}`}{" "}
-        — the live demo moment where the agent must detect and defend the position. This is a
-        clearly-labeled demo fixture, not a real Chainlink price feed.
+        — forcing the position below its policy floor so the agent must detect and defend it.
+        This feed is a self-controlled fixture, not a real Chainlink price feed.
       </p>
 
       <button

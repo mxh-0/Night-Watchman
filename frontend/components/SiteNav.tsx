@@ -7,7 +7,7 @@ import { WalletButton } from "@/components/WalletButton";
 
 const LINKS = [
   { href: "/", label: "Watchtower" },
-  { href: "/vault", label: "Demo Vault" },
+  { href: "/vault", label: "Vault" },
   { href: "/activity", label: "Activity Log" },
 ];
 
