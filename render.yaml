@@ -1,0 +1,57 @@
+# Render blueprint for the agent API.
+#
+# The dashboard is a static Next.js app and deploys to Vercel; this is the
+# long-running half — the poll loop, the REST API, and the WebSocket the
+# Activity feed subscribes to.
+#
+# Secrets are NOT in this file. Set them in the Render dashboard under
+# Environment (see `sync: false` below — Render prompts for each one).
+services:
+  - type: web
+    name: lamplighter-agent
+    runtime: node
+    plan: free
+    rootDir: agent
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/activity
+    envVars:
+      # --- set these by hand in the Render dashboard ---
+      - key: THE_GRAPH_API_KEY
+        sync: false
+      - key: AGENT_PRIVATE_KEY
+        sync: false
+
+      # --- safe to commit ---
+      - key: GRAPH_MODE
+        value: live
+      - key: AGENT_NETWORK
+        value: arc
+      - key: ARC_TESTNET_RPC_URL
+        value: https://rpc.testnet.arc.network
+      - key: DEMO_USER_ADDRESS
+        value: "0x867b93045Ad26db454bEc0ecb52759Bb0126Ac50"
+      - key: USDC_ADDRESS
+        value: "0x3600000000000000000000000000000000000000"
+      - key: MOCK_WETH_ADDRESS
+        value: "0x2F5ce5d5F73AbeDA7d8e25083Ee6139413DB2720"
+      - key: MOCK_PRICE_FEED_ADDRESS
+        value: "0xC791288176d216EA5ca12bebE63B8c70Ea3705ef"
+      - key: MOCK_LENDING_POOL_ADDRESS
+        value: "0xe8c3D77fa5372552138424119CB1b61C898b00D3"
+      - key: MOCK_LENDING_POOL_ADAPTER_ADDRESS
+        value: "0x980ED9C5636Adeb726E70F04aD5C81C96EeF8b64"
+      - key: WATCHMAN_VAULT_ADDRESS
+        value: "0x622662b7e046eb40da12BCeDB890CA90238E87D0"
+      - key: GRAPH_AAVE_V3_SUBGRAPH_ID
+        value: JCNWRypm7FYwV8fx5HhzZPSFaMxgkPuw4TnR3Gpi81zk
+      - key: GRAPH_COMPOUND_V3_SUBGRAPH_ID
+        value: AwoxEZbiWLvv6e3QdvdMZw4WDURdGbvPfHmZRc8Dpfz9
+      - key: GRAPH_SPARK_SUBGRAPH_ID
+        value: GbKdmBe4ycCYCQLQSjqGg6UHYoYfbyJyq5WrG35pv1si
+      - key: GRAPH_SEAMLESS_SUBGRAPH_ID
+        value: 2u4mWUV4xS19ef1MbnxZHWLLMwdPxtVifH46JbonXwXP
+      - key: WATCHLIST
+        value: 0x6142eb927529974c5cded66dafc57cb5aaaf73ab,0xa32e350c5397b78fe31d8e65d6bfa3d2c58a2ebb,0x941ad3ebd8321797b9b53a87ade232e5d85973d1,0xdf2609ec3d2e07a79d2e25e52960e75250bd9aaa,0x86aef245207e2f93fba083d51852c91a7e711eb6,0x26d20f830c7e2ad30346df7704e3531cd65863a1,0x31681dbc7fa8a33ab1331e69567f8f6b5f5d23dc,0xbf439e24c3ae24d9a4e3e3a26439ca6af37f4195,0xb99a2c4c1c4f1fc27150681b740396f6ce1cbcf5,0x3a0dc3fc4b84e2427ced214c9ce858ea218e97d9,0x99926ab8e1b589500ae87977632f13cf7f70f242,0x28355886a65848488cf0a3646fca395db0a762b1
+      - key: AGENT_POLL_INTERVAL_MS
+        value: "5000"
